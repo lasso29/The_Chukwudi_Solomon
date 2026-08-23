@@ -1,0 +1,1732 @@
+/* ==========================================================================
+   CHUKWUDI SOLOMON — PERSONAL BRAND DESIGN SYSTEM (2026)
+   Business Strategist · Entrepreneur · Educator · Speaker
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. VARIABLES & DESIGN TOKENS (Extracted from Brand Identity)
+   -------------------------------------------------------------------------- */
+:root {
+  /* Bento Grid Brand Palette */
+  --primary-purple: #4B0082;          /* Deep Royal Indigo Purple */
+  --primary-purple-dark: #2A004B;     /* Darker indigo for deep contrast */
+  --primary-purple-deep: #1A0033;     /* Midnight bento purple */
+  --primary-purple-light: #5C0099;    /* Hover / active purple */
+  --primary-purple-subtle: #F5F0FA;   /* Soft tinted background */
+  --primary-purple-glow: rgba(75, 0, 130, 0.12);
+
+  --accent-orange: #FF6B00;           /* Vibrant Bento Brand Orange */
+  --accent-orange-hover: #E66000;     /* Deep Orange for hover */
+  --accent-orange-light: #FFF4EB;     /* Warm highlight background */
+  --accent-orange-glow: rgba(255, 107, 0, 0.2);
+
+  /* Bento Neutrals */
+  --text-dark: #111111;               /* High-contrast crisp charcoal/black */
+  --text-body: #333333;               /* Deep readable gray for body */
+  --text-muted: #666666;              /* Secondary explanatory text */
+  --text-light: #888888;              /* Low-contrast accents & timestamps */
+  --text-white: #FFFFFF;
+
+  --background: #FFFFFF;              /* Pure canvas */
+  --background-soft: #F8F7F9;         /* Bento soft background */
+  --background-card: #FFFFFF;
+  --border: #E8E8E8;                  /* Crisp 1px Bento Border */
+  --border-light: #F0F0F0;
+  --border-focus: #4B0082;
+
+  /* Typography */
+  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Bento Geometry & Radii */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-pill: 9999px;
+
+  /* Gradients & Shadows */
+  --purple-gradient: linear-gradient(135deg, var(--primary-purple) 0%, #2A004B 100%);
+  --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.04);
+  --shadow-hover: 0 8px 24px rgba(75, 0, 130, 0.08);
+  --shadow-elevated: 0 16px 36px rgba(42, 0, 75, 0.14);
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-smooth: 0.3s ease;
+  --transition-bounce: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --------------------------------------------------------------------------
+   2. GLOBAL RESET & BASE STYLES
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-body);
+  background-color: var(--background);
+  line-height: 1.65;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--text-dark);
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.025em;
+  margin-top: 0;
+}
+
+p {
+  margin-bottom: 1.25rem;
+  max-width: 68ch;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+a {
+  color: var(--primary-purple);
+  text-decoration: none;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+a:hover {
+  color: var(--accent-orange);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+::selection {
+  background-color: var(--accent-orange);
+  color: #ffffff;
+}
+
+/* Container Precision */
+.container {
+  max-width: 1200px;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1240px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. TYPOGRAPHY, BENTO TOKENS & UTILITY CLASSES
+   -------------------------------------------------------------------------- */
+.bento-card {
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+  background: #FFFFFF;
+  border-radius: var(--radius-md);
+  position: relative;
+}
+
+.bento-card:hover {
+  border-color: var(--primary-purple-light);
+  box-shadow: var(--shadow-card);
+}
+
+.purple-gradient {
+  background: var(--purple-gradient);
+}
+
+.orange-glow {
+  color: var(--accent-orange);
+  text-shadow: 0 0 15px var(--accent-orange-glow);
+}
+
+.thin-border {
+  border: 1px solid var(--border);
+}
+
+.bento-progress-track {
+  height: 4px;
+  width: 100%;
+  background-color: var(--background-soft);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  margin-top: 0.75rem;
+}
+
+.bento-progress-fill {
+  height: 100%;
+  width: 35%;
+  background-color: var(--accent-orange);
+  border-radius: var(--radius-pill);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--accent-orange);
+  margin-bottom: 1rem;
+}
+
+.eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent-orange);
+}
+
+.eyebrow-light {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+}
+
+.eyebrow-light::before {
+  background-color: var(--accent-orange);
+}
+
+.highlight-orange {
+  color: var(--accent-orange);
+  position: relative;
+  display: inline-block;
+}
+
+.text-purple {
+  color: var(--primary-purple) !important;
+}
+
+.text-orange {
+  color: var(--accent-orange) !important;
+}
+
+.bg-purple-deep {
+  background-color: var(--primary-purple-deep) !important;
+}
+
+.bg-soft {
+  background-color: var(--background-soft) !important;
+}
+
+/* --------------------------------------------------------------------------
+   4. BUTTONS & INTERACTIVE CONTROLS (Bento Refined)
+   -------------------------------------------------------------------------- */
+.btn-brand-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--accent-orange);
+  color: #FFFFFF;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 0.85rem 1.65rem;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--accent-orange);
+  box-shadow: 0 2px 10px rgba(255, 107, 0, 0.2);
+  transition: all var(--transition-smooth);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-brand-primary:hover {
+  background-color: var(--accent-orange-hover);
+  border-color: var(--accent-orange-hover);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+  box-shadow: 0 6px 18px rgba(255, 107, 0, 0.3);
+}
+
+.btn-brand-primary:active {
+  transform: translateY(0);
+}
+
+.btn-brand-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #FFFFFF;
+  color: var(--text-dark);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 0.85rem 1.65rem;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border);
+  transition: all var(--transition-smooth);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-brand-secondary:hover {
+  border-color: var(--primary-purple);
+  color: var(--primary-purple);
+  background-color: var(--primary-purple-subtle);
+  transform: translateY(-2px);
+}
+
+.btn-brand-outline-white {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  color: #FFFFFF;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 0.85rem 1.65rem;
+  border-radius: var(--radius-xs);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all var(--transition-smooth);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-brand-outline-white:hover {
+  background-color: #FFFFFF;
+  color: var(--primary-purple-dark);
+  border-color: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+.btn-brand-purple {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--primary-purple);
+  color: #FFFFFF;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  padding: 0.85rem 1.65rem;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--primary-purple);
+  transition: all var(--transition-smooth);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn-brand-purple:hover {
+  background-color: var(--primary-purple-light);
+  border-color: var(--primary-purple-light);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(75, 0, 130, 0.25);
+}
+
+/* --------------------------------------------------------------------------
+   5. NAVBAR & HEADER (Bento Grid Theme)
+   -------------------------------------------------------------------------- */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1050;
+  background-color: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  transition: all var(--transition-smooth);
+}
+
+.site-header.scrolled {
+  background-color: #FFFFFF;
+  border-bottom-color: var(--border);
+  box-shadow: var(--shadow-subtle);
+}
+
+.navbar {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  transition: padding var(--transition-smooth);
+}
+
+.site-header.scrolled .navbar {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+/* Brand Logo */
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.brand-monogram {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--primary-purple);
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.125rem;
+  border-radius: var(--radius-xs);
+  position: relative;
+  letter-spacing: -0.02em;
+  transition: transform var(--transition-fast), background-color var(--transition-fast);
+}
+
+.brand-monogram::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent-orange);
+  border-radius: 2px;
+  border: 1.5px solid #FFFFFF;
+}
+
+.brand-logo:hover .brand-monogram {
+  background-color: var(--primary-purple-light);
+  transform: scale(1.02);
+}
+
+.brand-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-name {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  color: var(--text-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  line-height: 1.2;
+}
+
+.brand-tagline {
+  font-size: 0.625rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 2px;
+}
+
+/* Nav Links - Bento Style */
+.navbar-nav {
+  gap: 1.75rem;
+}
+
+.nav-link {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-dark) !important;
+  padding: 0.5rem 0 !important;
+  position: relative;
+  transition: color var(--transition-fast);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-purple);
+  transition: width var(--transition-smooth);
+}
+
+.nav-link:hover {
+  color: var(--accent-orange) !important;
+}
+
+.nav-link.active {
+  color: var(--primary-purple) !important;
+}
+
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Mobile Toggler */
+.navbar-toggler {
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.6rem;
+  border-radius: var(--radius-xs);
+  color: var(--text-dark);
+}
+
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 2px var(--primary-purple-glow);
+  outline: none;
+}
+
+/* --------------------------------------------------------------------------
+   6. HERO SECTION (Bento Grid Aesthetics)
+   -------------------------------------------------------------------------- */
+.hero-section {
+  padding-top: 8.5rem;
+  padding-bottom: 5rem;
+  position: relative;
+  background: var(--background);
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-heading {
+  font-size: clamp(2.5rem, 5vw, 4.25rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--text-dark);
+  margin-bottom: 1.5rem;
+}
+
+.hero-heading span.fw-bold {
+  font-weight: 800;
+}
+
+.hero-subtitle {
+  font-size: 1.125rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin-bottom: 2.25rem;
+  max-width: 520px;
+}
+
+.hero-cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.hero-credential-bar {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.cred-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.cred-item i {
+  color: var(--accent-orange);
+  font-size: 1rem;
+}
+
+/* Hero Portrait Frame */
+.hero-image-wrapper {
+  position: relative;
+  padding: 0.5rem;
+}
+
+.hero-image-frame {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background-color: var(--background-soft);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+}
+
+.hero-image-frame img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.hero-image-frame:hover img {
+  transform: scale(1.015);
+}
+
+.hero-badge-floating {
+  position: absolute;
+  bottom: 1.75rem;
+  left: -0.75rem;
+  background-color: #FFFFFF;
+  border: 1px solid var(--border);
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-hover);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 2;
+}
+
+.floating-icon-box {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-xs);
+  background-color: var(--primary-purple-subtle);
+  color: var(--primary-purple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.hero-badge-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-badge-title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  color: var(--text-dark);
+}
+
+.hero-badge-sub {
+  font-size: 0.6875rem;
+  color: var(--accent-orange);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.hero-decor-accent {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 120px;
+  height: 120px;
+  border-right: 1.5px solid var(--accent-orange);
+  border-top: 1.5px solid var(--accent-orange);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   7. SECTION BASE & INTRODUCTION (Bento 3-Column Pillars)
+   -------------------------------------------------------------------------- */
+.section-padding {
+  padding-top: 5.5rem;
+  padding-bottom: 5.5rem;
+}
+
+.section-header {
+  margin-bottom: 3.5rem;
+}
+
+.section-title {
+  font-size: clamp(1.875rem, 3.2vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--text-dark);
+  margin-bottom: 0.875rem;
+}
+
+.section-lead {
+  font-size: 1.0625rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* Bento Column Cards (01 Purpose, 02 Strategy, 03 Discipline) */
+.editorial-column-card {
+  height: 100%;
+  padding: 2rem 1.75rem;
+  background-color: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.editorial-column-card:hover {
+  border-color: var(--primary-purple);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+.col-num {
+  font-family: var(--font-heading);
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--border);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  transition: color var(--transition-fast);
+}
+
+.editorial-column-card:hover .col-num {
+  color: var(--accent-orange);
+}
+
+.col-title {
+  font-size: 0.8125rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--text-dark);
+  margin-bottom: 0.75rem;
+}
+
+.col-desc {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+}
+
+/* --------------------------------------------------------------------------
+   8. MONDAY BUSINESS SNIPPET (Bento Split Card)
+   -------------------------------------------------------------------------- */
+.snippet-highlight-card {
+  background-color: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: all var(--transition-smooth);
+}
+
+.snippet-highlight-card:hover {
+  border-color: var(--primary-purple-light);
+  box-shadow: var(--shadow-hover);
+}
+
+.snippet-content-col {
+  padding: 3.25rem 2.75rem;
+}
+
+.snippet-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.75rem;
+  background-color: var(--accent-orange-light);
+  border: 1px solid rgba(255, 107, 0, 0.2);
+  color: var(--accent-orange);
+  border-radius: var(--radius-xs);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+.pulse-dot {
+  width: 7px;
+  height: 7px;
+  background-color: var(--accent-orange);
+  border-radius: 50%;
+  animation: pulseAnimation 1.6s infinite;
+}
+
+@keyframes pulseAnimation {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 107, 0, 0.7); }
+  70% { transform: scale(1.15); box-shadow: 0 0 0 6px rgba(255, 107, 0, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 107, 0, 0); }
+}
+
+.snippet-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  margin: 2rem 0;
+  background-color: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  overflow: hidden;
+}
+
+.snippet-meta-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  background-color: var(--background-soft);
+  padding: 1rem 1.25rem;
+}
+
+.snippet-meta-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-xs);
+  background-color: var(--primary-purple);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+}
+
+.snippet-meta-label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.snippet-meta-val {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--text-dark);
+}
+
+.snippet-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* QR Code & Session Pass Sidebar - Bento Gradient */
+.snippet-qr-sidebar {
+  background: var(--purple-gradient);
+  color: #FFFFFF;
+  padding: 3.25rem 2.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+.qr-box-container {
+  background-color: #FFFFFF;
+  padding: 1rem;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  margin-bottom: 1.25rem;
+  position: relative;
+}
+
+.qr-code-svg {
+  width: 155px;
+  height: 155px;
+  display: block;
+}
+
+.qr-scan-text {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 0.75rem;
+}
+
+.session-pass-badge {
+  display: inline-block;
+  background-color: var(--accent-orange);
+  color: #FFFFFF;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+/* --------------------------------------------------------------------------
+   9. WHAT YOU'LL DISCOVER (Bento Interactive Outcomes)
+   -------------------------------------------------------------------------- */
+.discover-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.discover-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 1.75rem;
+  background-color: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  transition: all var(--transition-smooth);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.discover-item:hover {
+  border-color: var(--primary-purple);
+  background-color: #FFFFFF;
+  transform: translateX(4px);
+  box-shadow: var(--shadow-subtle);
+}
+
+.discover-content-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  flex: 1;
+}
+
+.discover-num {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--border);
+  transition: color var(--transition-fast);
+}
+
+.discover-item:hover .discover-num {
+  color: var(--accent-orange);
+}
+
+.discover-text-group {
+  flex: 1;
+}
+
+.discover-title {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 0.25rem;
+  transition: color var(--transition-fast);
+}
+
+.discover-item:hover .discover-title {
+  color: var(--primary-purple);
+}
+
+.discover-desc {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
+.discover-arrow {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-xs);
+  background-color: var(--background-soft);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.discover-item:hover .discover-arrow {
+  background-color: var(--accent-orange);
+  border-color: var(--accent-orange);
+  color: #FFFFFF;
+}
+
+/* --------------------------------------------------------------------------
+   10. ABOUT CHUKWUDI SECTION (Bento Bio & Metrics)
+   -------------------------------------------------------------------------- */
+.about-image-wrapper {
+  position: relative;
+  padding: 0.5rem;
+}
+
+.about-image-frame {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--border);
+}
+
+.about-quote-card {
+  position: absolute;
+  bottom: 1.75rem;
+  right: -0.75rem;
+  background: var(--purple-gradient);
+  color: #FFFFFF;
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius-xs);
+  max-width: 280px;
+  box-shadow: var(--shadow-elevated);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.about-quote-text {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.45;
+  margin-bottom: 0.5rem;
+  color: #FFFFFF;
+}
+
+.about-quote-author {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: var(--accent-orange);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.positioning-pill {
+  display: inline-block;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--primary-purple);
+  background-color: var(--primary-purple-subtle);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-xs);
+  border: 1px solid rgba(75, 0, 130, 0.1);
+  margin-bottom: 1.25rem;
+}
+
+.about-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  margin: 2rem 0;
+  background-color: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  overflow: hidden;
+}
+
+.metric-item {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-soft);
+  padding: 1.25rem 1rem;
+}
+
+.metric-val {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--primary-purple);
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.metric-label {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+/* --------------------------------------------------------------------------
+   11. WAYS TO WORK TOGETHER (Bento Services)
+   -------------------------------------------------------------------------- */
+.service-card {
+  height: 100%;
+  padding: 2.25rem 1.75rem;
+  background-color: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.service-card:hover {
+  border-color: var(--primary-purple);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.service-num {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--border);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
+  transition: color var(--transition-fast);
+}
+
+.service-card:hover .service-num {
+  color: var(--accent-orange);
+}
+
+.service-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 0.75rem;
+}
+
+.service-desc {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin-bottom: 1.75rem;
+}
+
+.service-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--primary-purple);
+  transition: gap var(--transition-fast), color var(--transition-fast);
+}
+
+.service-card:hover .service-link {
+  color: var(--accent-orange);
+  gap: 0.75rem;
+}
+
+/* --------------------------------------------------------------------------
+   12. TRANSFORMATION SECTION (Bento Deep Canvas)
+   -------------------------------------------------------------------------- */
+.transformation-section {
+  background: var(--purple-gradient);
+  color: #FFFFFF;
+  padding: 6rem 0;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.transformation-heading {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 800;
+  line-height: 1.15;
+  color: #FFFFFF;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.25rem;
+}
+
+.transformation-lead {
+  font-size: 1.0625rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 3.25rem;
+}
+
+.transformation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 3.25rem;
+}
+
+.transformation-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.5rem 1.25rem;
+  border-radius: var(--radius-xs);
+  text-align: center;
+  backdrop-filter: blur(8px);
+  transition: all var(--transition-smooth);
+}
+
+.transformation-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--accent-orange);
+  transform: translateY(-3px);
+}
+
+.transform-from {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+  margin-bottom: 0.35rem;
+}
+
+.transform-arrow {
+  color: var(--accent-orange);
+  font-size: 1.125rem;
+  margin-bottom: 0.35rem;
+}
+
+.transform-to {
+  font-family: var(--font-heading);
+  font-size: 1.1875rem;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+
+/* --------------------------------------------------------------------------
+   13. TESTIMONIALS SECTION (Bento Testimonial Cards)
+   -------------------------------------------------------------------------- */
+.testimonial-card {
+  height: 100%;
+  padding: 2.25rem 2rem;
+  background-color: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-subtle);
+  transition: all var(--transition-smooth);
+}
+
+.testimonial-card:hover {
+  border-color: var(--primary-purple);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+.testimonial-quote-icon {
+  font-size: 1.5rem;
+  color: var(--accent-orange);
+  line-height: 1;
+  margin-bottom: 0.75rem;
+}
+
+.testimonial-quote {
+  font-size: 0.9375rem;
+  color: var(--text-body);
+  line-height: 1.65;
+  font-style: normal;
+  margin-bottom: 1.75rem;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-light);
+}
+
+.author-avatar-monogram {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-xs);
+  background-color: var(--primary-purple-subtle);
+  color: var(--primary-purple);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.author-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.author-name {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--text-dark);
+}
+
+.author-role {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   14. RESOURCES (The Bento Knowledge Hub)
+   -------------------------------------------------------------------------- */
+.resource-filter-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.filter-btn {
+  background-color: #FFFFFF;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background-color: var(--primary-purple);
+  border-color: var(--primary-purple);
+  color: #FFFFFF;
+}
+
+.resource-card {
+  height: 100%;
+  padding: 1.75rem;
+  background-color: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all var(--transition-smooth);
+}
+
+.resource-card:hover {
+  border-color: var(--accent-orange);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+.resource-tag {
+  display: inline-block;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent-orange);
+  margin-bottom: 0.75rem;
+}
+
+.resource-title {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.resource-desc {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin-bottom: 1.25rem;
+}
+
+.resource-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border-light);
+  font-size: 0.75rem;
+  color: var(--text-light);
+}
+
+.resource-action-link {
+  font-weight: 700;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--primary-purple);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.resource-card:hover .resource-action-link {
+  color: var(--accent-orange);
+}
+
+/* --------------------------------------------------------------------------
+   15. NEWSLETTER SECTION (Bento Container)
+   -------------------------------------------------------------------------- */
+.newsletter-card {
+  background-color: var(--background-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 3.5rem 2.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.newsletter-form-box {
+  max-width: 520px;
+  margin: 1.75rem auto 0 auto;
+}
+
+.newsletter-input-group {
+  display: flex;
+  gap: 0.5rem;
+  background-color: #FFFFFF;
+  padding: 0.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  box-shadow: var(--shadow-subtle);
+  transition: border-color var(--transition-fast);
+}
+
+.newsletter-input-group:focus-within {
+  border-color: var(--primary-purple);
+  box-shadow: 0 0 0 2px var(--primary-purple-glow);
+}
+
+.newsletter-input {
+  flex: 1;
+  border: none;
+  padding: 0.65rem 0.85rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--text-dark);
+  outline: none;
+  background: transparent;
+}
+
+.newsletter-input::placeholder {
+  color: var(--text-light);
+}
+
+.form-feedback-msg {
+  font-size: 0.8125rem;
+  margin-top: 0.75rem;
+  display: none;
+}
+
+.form-feedback-msg.show-success {
+  display: block;
+  color: #0E8345;
+  font-weight: 600;
+}
+
+.form-feedback-msg.show-error {
+  display: block;
+  color: #D92D20;
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   16. FINAL CTA SECTION (Bento Royal Purple Gradient)
+   -------------------------------------------------------------------------- */
+.final-cta-section {
+  padding: 6rem 0;
+  background: var(--purple-gradient);
+  color: #FFFFFF;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--border);
+}
+
+.final-cta-heading {
+  font-size: clamp(2.25rem, 4vw, 3.25rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #FFFFFF;
+  margin-bottom: 1rem;
+}
+
+.final-cta-lead {
+  font-size: 1.0625rem;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 580px;
+  margin: 0 auto 2.25rem auto;
+}
+
+/* --------------------------------------------------------------------------
+   17. FOOTER (Bento Clean Minimalist)
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background-color: #FFFFFF;
+  border-top: 1px solid var(--border);
+  padding-top: 4.5rem;
+  padding-bottom: 2.5rem;
+}
+
+.footer-brand-desc {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  margin-top: 0.85rem;
+  margin-bottom: 1.25rem;
+  max-width: 320px;
+}
+
+.footer-heading {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 1.25rem;
+}
+
+.footer-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.footer-link {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  transition: color var(--transition-fast);
+}
+
+.footer-link:hover {
+  color: var(--primary-purple);
+}
+
+.social-links-bar {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.social-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-xs);
+  background-color: var(--background-soft);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dark);
+  font-size: 1rem;
+  transition: all var(--transition-fast);
+}
+
+.social-btn:hover {
+  background-color: var(--primary-purple);
+  border-color: var(--primary-purple);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+.footer-bottom {
+  margin-top: 3.5rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--border-light);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   18. BACK TO TOP BUTTON & UTILITIES
+   -------------------------------------------------------------------------- */
+.back-to-top-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-xs);
+  background-color: var(--primary-purple);
+  color: #FFFFFF;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.125rem;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: all var(--transition-smooth);
+  z-index: 999;
+  box-shadow: var(--shadow-card);
+}
+
+.back-to-top-btn.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top-btn:hover {
+  background-color: var(--accent-orange);
+  border-color: var(--accent-orange);
+  transform: translateY(-3px);
+}
+
+/* --------------------------------------------------------------------------
+   19. SCROLL REVEAL ANIMATIONS (Pure CSS + IntersectionObserver)
+   -------------------------------------------------------------------------- */
+.reveal-fade {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-fade.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-4 { transition-delay: 0.32s; }
+
+/* --------------------------------------------------------------------------
+   20. MODAL REFINEMENTS (Bento Grid Style)
+   -------------------------------------------------------------------------- */
+.modal-content {
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-elevated);
+}
+
+.modal-header {
+  border-bottom: 1px solid var(--border-light);
+  padding: 1.25rem 1.5rem;
+}
+
+.modal-title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--text-dark);
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   21. RESPONSIVE BREAKPOINTS
+   -------------------------------------------------------------------------- */
+@media (max-width: 991.98px) {
+  .hero-section {
+    padding-top: 7rem;
+    padding-bottom: 3.5rem;
+  }
+  
+  .hero-image-wrapper {
+    margin-top: 2.5rem;
+  }
+
+  .snippet-content-col {
+    padding: 2.5rem 1.75rem;
+  }
+
+  .snippet-qr-sidebar {
+    padding: 2.5rem 1.75rem;
+  }
+
+  .navbar-collapse {
+    background-color: #FFFFFF;
+    border-radius: var(--radius-xs);
+    padding: 1.25rem;
+    margin-top: 1rem;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-card);
+  }
+
+  .navbar-nav {
+    gap: 0.75rem;
+  }
+
+  .nav-link::after {
+    display: none;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .section-padding {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .hero-heading {
+    font-size: 2.125rem;
+  }
+
+  .hero-badge-floating {
+    position: static;
+    margin-top: 1rem;
+  }
+
+  .snippet-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-quote-card {
+    position: static;
+    margin-top: 1rem;
+    max-width: 100%;
+  }
+
+  .newsletter-card {
+    padding: 2.5rem 1.25rem;
+  }
+
+  .newsletter-input-group {
+    flex-direction: column;
+    background: transparent;
+    border: none;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .newsletter-input {
+    background-color: #FFFFFF;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xs);
+    margin-bottom: 0.5rem;
+  }
+}
